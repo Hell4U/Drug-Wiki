@@ -4,6 +4,7 @@ import com.promition.drugwiki.constant.DosageUnit;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "generics")
@@ -22,4 +23,7 @@ public class Generic extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable =false)
     private DosageUnit dosageUnit;
+
+    @ManyToMany(mappedBy = "generics")
+    private List<Brand> brands;
 }
