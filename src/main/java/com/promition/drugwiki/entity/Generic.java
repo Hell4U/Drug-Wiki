@@ -1,5 +1,6 @@
 package com.promition.drugwiki.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.promition.drugwiki.constant.DosageUnit;
 import lombok.Data;
 
@@ -24,6 +25,7 @@ public class Generic extends BaseEntity {
     @Column(nullable =false)
     private DosageUnit dosageUnit;
 
+    @JsonManagedReference
     @ManyToMany(mappedBy = "generics")
     private List<Brand> brands;
 }

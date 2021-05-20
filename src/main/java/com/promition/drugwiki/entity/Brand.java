@@ -1,5 +1,6 @@
 package com.promition.drugwiki.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.promition.drugwiki.constant.Type;
 import com.promition.drugwiki.constant.TypeUnit;
 import lombok.Data;
@@ -39,6 +40,7 @@ public class Brand extends BaseEntity {
     @Column(nullable = false)
     private TypeUnit typeUnit;
 
+    @JsonBackReference
     @ManyToMany
     @JoinTable(name = "brand_generics",
             joinColumns = @JoinColumn(name = "brand_id"),
