@@ -44,4 +44,10 @@ public class GenericController {
         genericService.delete(id);
         return List.of("Id has been deleted");
     }
+
+    @PutMapping("/{id}")
+    public Generic update(@PathVariable Long id, @RequestBody Generic generic){
+        generic=genericService.update(id,generic);
+        return generic;
+    }
 }

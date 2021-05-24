@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -39,14 +38,14 @@ public class BrandController {
     }
 
     @DeleteMapping("/{id}")
-    public List<String> deleteById(@Valid @PathVariable(name = "id") Long id){
+    public List<String> deleteById(@PathVariable(name = "id") Long id){
         brandService.delete(id);
         return List.of("Id has been deleted");
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Brand> updateById(@Valid @PathVariable(name="id") Long id, @RequestBody Brand brand) throws URISyntaxException {
-            brand=brandService.save(brand);
-            return ResponseEntity.created(new URI("/api/brands/"+brand.getId())).body(brand);
+    public Brand updateById(@PathVariable(name="id") Long id, @Valid @RequestBody Brand brand) {
+            brand = brandService.update(id,brand);
+            return brand;
     }
 }

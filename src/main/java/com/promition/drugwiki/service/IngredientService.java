@@ -22,6 +22,23 @@ public class IngredientService {
         return ingredientRepository.save(ingredient);
     }
 
+    public Ingredient update(Long id, Ingredient ingredient){
+        Ingredient existing= ingredientRepository.getOne(id);
+        if(ingredient.getSymptoms()!=null)
+            existing.setSymptoms(ingredient.getSymptoms());
+        if(ingredient.getCautions()!=null)
+            existing.setCautions(ingredient.getCautions());
+        if(ingredient.getSideEffects()!=null)
+            existing.setSideEffects(ingredient.getSideEffects());
+        ingredient=ingredientRepository.save(existing);
+        return ingredient;
+    }
+
+    public Ingredient getOne(Long id, Ingredient ingredient){
+        Ingredient existingIngredient=ingredientRepository.findById(id).get();
+        existingIngredient.setSymptoms(ingredient.getSymptoms());
+        return existingIngredient;
+    }
     @Transactional(readOnly = true)
     public Optional<Ingredient> findOne(Long id){
         return ingredientRepository.findById(id);

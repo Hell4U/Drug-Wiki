@@ -22,6 +22,22 @@ public class CompanyService {
         return companyRepository.save(company);
     }
 
+    public Company update(Long id, Company company){
+        Company existing=companyRepository.getOne(id);
+        if(company.getAddress()!=null)
+            existing.setAddress(company.getAddress());
+        if(company.getPhone()!=null)
+            existing.setPhone(company.getPhone());
+        if(company.getEmail()!=null)
+            existing.setEmail(company.getEmail());
+        if(company.getFax()!=null)
+            existing.setFax(company.getFax());
+        if(company.getWebsite()!=null)
+            existing.setWebsite(company.getWebsite());
+        company=companyRepository.save(existing);
+        return company;
+    }
+
     @Transactional(readOnly = true)
     public Optional<Company> findOne(Long id) {
         return companyRepository.findById(id);

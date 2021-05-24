@@ -23,6 +23,15 @@ public class GenericService {
         return genericRepository.save(generic);
     }
 
+    public Generic update(Long id, Generic generic){
+        Generic existing=genericRepository.getOne(id);
+        if(generic.getIngredient()!=null)
+            existing.setIngredient(generic.getIngredient());
+        if(generic.getDosage()!=null)
+            existing.setDosage(generic.getDosage());
+        return generic;
+    }
+
     @Transactional(readOnly = true)
     public Optional<Generic> findOne(Long id){
         return genericRepository.findById(id);

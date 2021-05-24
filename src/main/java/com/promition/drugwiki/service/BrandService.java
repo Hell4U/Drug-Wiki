@@ -22,6 +22,19 @@ public class BrandService {
          return brandRepository.save(brand);
     }
 
+    public Brand update(Long id, Brand brand){
+        Brand existingBrand=brandRepository.getOne(id);
+        if(brand.getPackageUnit()!=0)
+            existingBrand.setPackageUnit(brand.getPackageUnit());
+        if(brand.getPricePerUnit()!=0)
+            existingBrand.setPricePerUnit(brand.getPricePerUnit());
+
+        existingBrand.getGenerics().clear();
+        existingBrand.getGenerics().addAll(brand.getGenerics());
+        brand=brandRepository.save(existingBrand);
+        return brand;
+    }
+
     @Transactional(readOnly = true)
     public Optional<Brand> findOne(Long id) {
         return brandRepository.findById(id);

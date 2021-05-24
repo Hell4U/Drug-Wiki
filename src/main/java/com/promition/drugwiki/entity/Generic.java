@@ -24,8 +24,4 @@ public class Generic extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable =false)
     private DosageUnit dosageUnit;
-
-    @JsonManagedReference
-    @ManyToMany(mappedBy = "generics")
-    private List<Brand> brands;
 }

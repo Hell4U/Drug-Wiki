@@ -42,4 +42,10 @@ public class IngredientController {
         ingredientService.delete(id);
         return List.of("Id has been deleted");
     }
+
+    @PutMapping("/{id}")
+    public Ingredient getOne( @PathVariable(name = "id") Long id, @RequestBody Ingredient ingredient){
+        ingredient=ingredientService.update(id,ingredient);
+        return ingredient;
+    }
 }
