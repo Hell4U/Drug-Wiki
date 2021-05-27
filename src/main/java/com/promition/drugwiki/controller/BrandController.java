@@ -19,6 +19,7 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
+
     @PostMapping
     public ResponseEntity<Brand> create(@Valid @RequestBody Brand brand) throws URISyntaxException {
         brand=brandService.save(brand);
@@ -47,5 +48,10 @@ public class BrandController {
     public Brand updateById(@PathVariable(name="id") Long id, @Valid @RequestBody Brand brand) {
             brand = brandService.update(id,brand);
             return brand;
+    }
+
+    @GetMapping("/name")
+    public List<Brand> findNameContaining(String name){
+        return brandService.findContainingName(name);
     }
 }

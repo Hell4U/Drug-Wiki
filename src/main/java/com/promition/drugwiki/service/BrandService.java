@@ -35,6 +35,10 @@ public class BrandService {
         return brand;
     }
 
+    public List<Brand> findContainingName(String name){
+        return brandRepository.findByNameContaining(name);
+    }
+
     @Transactional(readOnly = true)
     public Optional<Brand> findOne(Long id) {
         return brandRepository.findById(id);
