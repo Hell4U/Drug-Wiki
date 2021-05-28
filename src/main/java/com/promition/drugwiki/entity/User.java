@@ -19,8 +19,6 @@ public class User extends BaseEntity implements UserDetails {
     private String username;
     private String password;
 
-
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
@@ -55,4 +53,6 @@ public class User extends BaseEntity implements UserDetails {
     public boolean isEnabled() {
         return false;
     }
+
+
 }
