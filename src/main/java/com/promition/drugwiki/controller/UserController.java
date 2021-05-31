@@ -13,12 +13,12 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping()
+    @PostMapping
     public User save(@RequestBody User user){
         return userService.save(user);
     }
 
-    @GetMapping()
+    @GetMapping
     public List<User> findAll(){
         return userService.findAll();
     }
